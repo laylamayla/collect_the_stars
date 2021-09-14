@@ -43,11 +43,17 @@
         this.load.image('ground', 'assets/platform.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
-        this.load.spritesheet('dude', 
-            'assets/dude.png',
-            { frameWidth: 32, frameHeight: 48 }
+        // this.load.spritesheet('dude', 
+        //     'assets/dude.png',
+        //     { frameWidth: 32, frameHeight: 48 }
+       
+        // );
+        this.load.spritesheet('blob', 
+            'assets/blob.png',
+            { frameWidth: 32, frameHeight: 32 }
        
         );
+        
     this.load.audio("ding", ["assets/sfx_coin_double3.wav"]);
     this.load.audio("explosion", ["assets/sfx_exp_medium1.wav"]);
     }
@@ -68,29 +74,37 @@
         platforms.create(750, 220, 'ground');
 
 
-        player = this.physics.add.sprite(100, 450, 'dude');
+        // player = this.physics.add.sprite(100, 450, 'dude');
+        player = this.physics.add.sprite(100, 450, 'blob');
 
         this.physics.add.collider(player, platforms);
 
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
 
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-            frameRate: 20,
-            repeat: -1
-        });
+        // this.anims.create({
+        //     key: 'left',
+        //     frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        //     frameRate: 20,
+        //     repeat: -1
+        // });
+
+        // this.anims.create({
+        //     key: 'turn',
+        //     frames: [ { key: 'dude', frame: 4 } ],
+        //     frameRate: 20
+        // });
+
+        // this.anims.create({
+        //     key: 'right',
+        //     frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        //     frameRate: 20,
+        //     repeat: -1
+        // });
 
         this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'dude', frame: 4 } ],
-            frameRate: 20
-        });
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            key: 'bounce',
+            frames: this.anims.generateFrameNumbers('blob', { start: 0, end: 6 }),
             frameRate: 20,
             repeat: -1
         });
@@ -124,19 +138,19 @@
         {
             player.setVelocityX(-160);
 
-            player.anims.play('left', true);
+            player.anims.play('bounce', true);
         }
         else if (cursors.right.isDown)
         {
             player.setVelocityX(160);
 
-            player.anims.play('right', true);
+            player.anims.play('bounce', true);
         }
         else
         {
             player.setVelocityX(0);
 
-            player.anims.play('turn');
+            player.anims.play('bounce');
         }
 
         if (cursors.up.isDown && player.body.touching.down)
