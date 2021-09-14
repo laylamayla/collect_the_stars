@@ -1,6 +1,6 @@
 # Collect The Stars
 
-I made this game of a tutorial using phaser. I am curently modofying it to make it my own, and you can play it here:
+I made this game of a tutorial using phaser. I am curently modifying it to make it my own, and you can play it here:
 [https://laylamayla.github.io/collect_the_stars/](https://laylamayla.github.io/collect_the_stars/)
 
 Here is the link to the tutorial:
